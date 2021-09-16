@@ -79,7 +79,8 @@ self.addEventListener('message', (event) => {
 
 // Any other custom service worker logic can go here.
 registerRoute(
-  /^https:\/\/www\.wisesa\.dev\/favicon\//,
+  // /^https:\/\/www\.wisesa\.dev\/favicon\//,
+  ({url})=> url.origin === 'https://www.wisesa.dev' && url.pathname.startsWith('/favicon'),
   new StaleWhileRevalidate({
     cacheName: "external-static-assets",
     plugins: [
