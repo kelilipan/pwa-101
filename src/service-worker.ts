@@ -12,7 +12,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate,CacheFirst } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -78,3 +78,15 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+registerRoute(
+  /^https:\/\/www\.wisesa\.dev\/favicon\//,
+  new CacheFirst({
+    cacheName: "external-static-assets",
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 20,
+        maxAgeSeconds: 24 * 60 * 60 * 30, //30days
+      }),
+    ],
+  })
+);
