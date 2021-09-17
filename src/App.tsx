@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <img crossOrigin="anonymous" src="https://www.wisesa.dev/favicon/og-default.jpg"alt="og" />
+        <img crossOrigin="anonymous" src="https://www.wisesa.dev/favicon/og-default.jpg" alt="og" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
